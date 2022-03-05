@@ -13,7 +13,7 @@ board = [
 
 
 def solve(board):
-    #soves using backtracking
+    #solves using backtracking
 
     pos = findEmpty(board)
 
@@ -27,7 +27,7 @@ def solve(board):
             board[row][col] = i
             if solve(board):
                 return True
-            board[row][col] = 0
+            board[row][col] = 0 #if it can't find a solution it reset the previous step
     return False
 
 

@@ -1,20 +1,5 @@
-
-board = [
-    [7,8,0,4,0,0,1,2,0],
-    [6,0,0,0,7,5,0,0,9],
-    [0,0,0,6,0,1,0,7,8],
-    [0,0,7,0,4,0,2,6,0],
-    [0,0,1,0,5,0,9,3,0],
-    [9,0,4,0,6,0,0,0,5],
-    [0,7,0,3,0,0,0,1,2],
-    [1,2,0,0,0,7,4,0,0],
-    [0,4,9,2,0,6,0,0,7]
-]
-
-
 def solve(board):
     #solves using backtracking
-
     pos = findEmpty(board)
 
     if not pos:
@@ -33,22 +18,25 @@ def solve(board):
 
 
 def valid(board, num, pos):
+    row, col = pos
+    
     #check the column
+
     for i in range(len(board)):
-        if (board[i][pos[1]] == num and pos[1]!= i):
+        if (board[i][col] == num and row!= i):
             return False
 
     #check the line
     for j in range(len(board[0])):
-        if(board[pos[0]][j] == num and pos[0]!=j ):
+        if(board[row][j] == num and col!=j ):
             return False
 
     #check the boxx
-    square_x = pos[0] // 3
-    square_y = pos[1] // 3
+    square_x = (row//3)*3
+    square_y = (col//3)*3
 
-    for i in range(square_x*3, square_x*3 + 3):
-       for j in range(square_y * 3, square_y*3 + 3):
+    for i in range(square_x, square_x + 3):
+       for j in range(square_y, square_y+ 3):
            if board[i][j] == num and (i,j) != pos:
                return False
 
@@ -75,14 +63,6 @@ def findEmpty(board):
             if board[i][j] == 0:
                 return (i,j)
     return None
-
-
-print_board(board)
-solve(board)
-print_board(board)
-
-
-
 
 
 
